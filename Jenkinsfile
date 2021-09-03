@@ -27,5 +27,14 @@ pipeline {
                 sh 'mvn surefire:test'
             }
         }
+        // Now Maven is intergrating Sonar-scanner for indept and rubost test, code smell, code volnurability
+        stage("build & SonarQube analysis") {
+            agent any
+            steps {
+              withSonarQubeEnv('sonarserver') {
+                sh 'mvn clean package sonar:sonar'
+              }
+            }
+          }
     }
 }
