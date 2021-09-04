@@ -27,14 +27,7 @@ pipeline {
             sh 'mvn surefire:test'
             }
         }
-        stage("build & SonarQube analysis") {
-            agent any
-          steps {
-                 withSonarQubeEnv('sonarserver') {
-                 sh 'mvn clean package sonar:sonar'
-              }
-            }
-         }
+ 
          stage("build & SonarQube analysis") {
              agent any
                steps {
@@ -45,4 +38,4 @@ pipeline {
           }
        }
     }
-}
+
