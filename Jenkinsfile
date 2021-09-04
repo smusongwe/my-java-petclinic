@@ -35,5 +35,13 @@ pipeline {
               }
             }
          }
+         stage("build & SonarQube analysis") {
+             agent any
+               steps {
+                withSonarQubeEnv('sonarserver') {
+                sh "mvn clean package sonar:sonar  -Dsonar.host.url=http://54.202.30.104:9000 -Dsonar.login=9d459e9a90f58879082ce0d24f02e929450af88b -Dsonar.projectKey=jjtech -Dsonar.projectName=Haplet -Dsonar.Version=1.0"
+              }
+            }
+          }
     }
 }
